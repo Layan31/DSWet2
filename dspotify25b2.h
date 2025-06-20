@@ -14,12 +14,42 @@
 #define DSPOTIFY25SPRING_WET2_H_
 
 #include "wet2util.h"
+#include "DynamicHashTable.h"
+#include "UnionFind.h"
 
 class DSpotify {
 private:
+
+    class Song {
+    public:
+        int song_id;
+        int genre_id;
+
+        Song(int song_id, int genre_id) : song_id(song_id), genre_id(genre_id) {};
+        ~Song() = default;
+    };
+
+    class Genre {
+    public:
+        int genre_id;
+        int num_songs;
+        Song* root_song;
+
+        explicit Genre(int genre_id) : genre_id(genre_id), num_songs(0), root_song(nullptr) {};
+
+        void clear() {
+            num_songs = 0;
+            root_song = nullptr;
+        }
+
+        ~Genre() = default;
+    };
+
     //
     // Here you may add anything you want
     //
+    DynamicHashTable<int, Genre> genres;
+    UnionFind<int, Song> songs;
     
 public:
     // <DO-NOT-MODIFY> {

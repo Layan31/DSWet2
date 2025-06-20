@@ -18,6 +18,8 @@ void print(string cmd, output_t<int> res);
 
 int main()
 {
+
+    //freopen("/home/student/Documents/MIVNI/Spring2025/Wet2/tests/test0.res","w",stdout);
     
     int d1, d2, d3;
 
